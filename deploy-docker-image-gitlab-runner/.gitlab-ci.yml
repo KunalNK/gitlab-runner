@@ -1,8 +1,3 @@
-name: "CodeQL Analysis"
-on:
-  push:
-    branches: [ main ]
-
 stages:
     - build_stage
     - deploy_stage
