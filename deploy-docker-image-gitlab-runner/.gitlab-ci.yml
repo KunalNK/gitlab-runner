@@ -1,3 +1,33 @@
+name: "CodeQL Analysis"
+on:
+  push:
+    branches: [ main ]
+
+stages:
+    - build_stage
+    - deploy_stage
+
+build:
+    image: docker
+    services:
+    - docker:dind
+    stage: build_stage
+    script:
+        - docker --version
+        - docker build -t pyapp .
+    # tags:
+    #     - localshell
+    #     - localrunner
+
+deploy:
+    stage: deploy_stage
+    script:
+        # - docker stop pyappcontainer1 || true && docker rm pyappcontainer1 || true
+        - docker run -d --name pyappcontainer1 -p 5000:8080 pyapp
+#     tags:
+#         - localshell
+#         - localrunner
+
 stages:
     - build_stage
     - deploy_stage
