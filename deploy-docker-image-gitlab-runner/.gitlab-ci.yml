@@ -1,3 +1,8 @@
+name: "CodeQL Analysis"
+on:
+  push:
+    branches: [ main ]
+
 stages:
     - build_stage
     - deploy_stage
@@ -5,7 +10,7 @@ stages:
 build:
     image: docker
     services:
-      - docker:dind
+    - docker:dind
     stage: build_stage
     script:
         - docker --version
